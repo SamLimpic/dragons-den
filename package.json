@@ -5,7 +5,7 @@
     "setup:app": "npm run setup:client && npm run setup:server",
     "setup:client": "cd dragons-den.client && npm i",
     "setup:server": "cd dragons-den && npm i",
-    "start": "node dragons-den.server/index.js"
+    "start": "node dragons-den/index.js"
   },
   "engines": {
     "node": "^14.17.0"
