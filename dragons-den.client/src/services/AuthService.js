@@ -4,7 +4,10 @@ import { audience, clientId, domain } from '../env'
 import { router } from '../router'
 import { accountService } from './AccountService'
 import { api } from './AxiosService'
+import { charactersService } from './CharactersService'
 import { socketService } from './SocketService'
+// import { gamesService } from './GamesService'
+// import { valuesService } from './ValuesService'
 
 export const AuthService = initialize({
   domain,
@@ -20,13 +23,18 @@ export const AuthService = initialize({
   }
 })
 
-
 AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function() {
   api.defaults.headers.authorization = AuthService.bearer
+  api.interceptors.request.use(refreshAuthToken)
   AppState.user = AuthService.user
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
   // NOTE if there is something you want to do once the user is authenticated, place that here
+  // await accountService.updateTimeStamp(AppState.account)
+  await charactersService.getCharactersByCreatorId(AppState.account.id)
+  await charactersService.getLive()
+  // await gamesService.randomizeGames()
+  // await gamesService.buildRoster()
 })
 
 async function refreshAuthToken(config) {
@@ -38,10 +46,8 @@ async function refreshAuthToken(config) {
     await AuthService.loginWithPopup()
   } else if (needsRefresh) {
     await AuthService.getTokenSilently()
-    api.defaults.headers.authorization = AuthService.bearer
-    socketService.authenticate(AuthService.bearer)
   }
+  api.defaults.headers.authorization = AuthService.bearer
+  socketService.authenticate(AuthService.bearer)
   return config
 }
-
-api.interceptors.request.use(refreshAuthToken)

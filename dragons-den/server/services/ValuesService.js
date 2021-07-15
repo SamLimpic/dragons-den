@@ -2,15 +2,15 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class ValuesService {
-  async find(query = {}) {
+  async getValues(query) {
     const values = await dbContext.Values.find(query)
     return values
   }
 
-  async findById(id) {
-    const value = await dbContext.Values.findById(id)
+  async editValue(body) {
+    const value = await dbContext.Values.findOneAndUpdate({ _id: body.id }, body, { new: true })
     if (!value) {
-      throw new BadRequest('Invalid Id')
+      throw new BadRequest('Invalid request')
     }
     return value
   }

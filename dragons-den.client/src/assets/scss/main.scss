@@ -14,10 +14,167 @@
   background-color: $body-bg;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  font-family: "Aladin", cursive;
 }
 
 main {
   flex-grow: 1;
   display: flex;
   align-items: stretch;
+}
+
+.hoverable {
+  cursor: pointer;
+}
+
+.b-line {
+  border-bottom-width: 3px;
+  border-bottom-color: var(--dark);
+  border-bottom-style: solid;
+  opacity: .5;
+}
+
+.disable {
+  pointer-events: none;
+  cursor: none;
+}
+
+@media (min-width: 0) {
+  .font-xs {
+    font-size: .9rem;
+  }
+  .font-sm {
+    font-size: 1rem;
+  }
+  .font-md {
+  font-size: 1.05rem;
+  }
+  .font-lg {
+  font-size: 1.1rem;
+  }
+  .font-xl {
+    font-size: 1.25rem;
+  }
+  .font-xxl {
+    font-size: 1.75rem;
+  }
+  .text-shadow {
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000,
+      -1px 1px 0 #000, 1px 1px 0 #000;
+  }
+  .icon {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .font-xs {
+    font-size: .95rem;
+  }
+  .font-sm {
+    font-size: 1.05rem;
+  }
+  .font-md {
+  font-size: 1.15rem;
+  }
+  .font-lg {
+  font-size: 1.25rem;
+  }
+  .font-xl {
+    font-size: 1.5rem;
+  }
+  .font-xxl {
+    font-size: 2rem;
+  }
+  .text-shadow {
+    text-shadow: -1.25px -1.25px 0 #000, 1.25px -1.25px 0 #000, -1.25px 1.25px 0 #000,
+      1.25px 1.25px 0 #000;
+  }
+  .icon {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .font-xs {
+    font-size: 1.05rem;
+  }
+  .font-sm {
+    font-size: 1.2rem;
+  }
+  .font-md {
+  font-size: 1.35rem;
+  }
+  .font-lg {
+  font-size: 1.5rem;
+  }
+  .font-xl {
+    font-size: 1.75rem;
+  }
+  .font-xxl {
+    font-size: 2.25rem;
+  }
+  .text-shadow {
+    text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000,
+      1.5px 1.5px 0 #000;
+  }
+  .icon {
+    font-size: 4rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .font-xs {
+    font-size: 1.15rem;
+  }
+  .font-sm {
+    font-size: 1.3rem;
+  }
+  .font-md {
+  font-size: 1.45rem;
+  }
+  .font-lg {
+  font-size: 1.75rem;
+  }
+  .font-xl {
+    font-size: 2rem;
+  }
+  .font-xxl {
+    font-size: 2.25rem;
+  }
+  .text-shadow {
+    text-shadow: -1.75px -1.75px 0 #000, 1.75px -1.75px 0 #000, -1.75px 1.75px 0 #000,
+      1.75px 1.75px 0 #000;
+  }
+  .icon {
+    font-size: 4.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .font-xs {
+    font-size: 1.25rem;
+  }
+  .font-sm {
+    font-size: 1.5rem;
+  }
+  .font-md {
+  font-size: 1.75rem;
+  }
+  .font-lg {
+  font-size: 2rem;
+  }
+  .font-xl {
+    font-size: 2.25rem;
+  }
+  .font-xxl {
+    font-size: 2.5rem;
+  }
+  .text-shadow {
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000,
+      -2px 2px 0 #000, 2px 2px 0 #000;
+  }
+  .icon {
+    font-size: 5rem;
+  }
 }

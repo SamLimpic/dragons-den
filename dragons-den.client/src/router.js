@@ -17,10 +17,31 @@ const routes = [
     component: loadPage('AboutPage')
   },
   {
-    path: '/account',
+    path: '/account/:id',
     name: 'Account',
     component: loadPage('AccountPage'),
     beforeEnter: authGuard
+  },
+  {
+    path: '/games',
+    name: 'Games',
+    component: loadPage('GamesPage'),
+    beforeEnter: authGuard
+  },
+  {
+    path: '/admin/:id',
+    name: 'Admin',
+    component: loadPage('AdminPage')
+  },
+  {
+    path: '/dm/:id',
+    name: 'DM',
+    component: loadPage('DMPage')
+  },
+  {
+    path: '/access-test',
+    name: 'AccessTest',
+    component: loadPage('AccessTestPage')
   }
 ]
 

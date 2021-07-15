@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2'
+import { AppState } from '../AppState'
 
 export default class Notification {
   /**
@@ -17,8 +18,8 @@ export default class Notification {
         text: text,
         icon: icon,
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#4f6031',
+        cancelButtonColor: '#8b2f15',
         confirmButtonText: confirmButtonText
       })
       if (res.isConfirmed) {
@@ -40,15 +41,107 @@ export default class Notification {
  * -----------------------------------
  * {@link https://sweetalert2.github.io/#configuration|Check out Sweet Alerts}
  */
-  static toast(title = 'Warning!', display = 'warning', position = 'top-end', timer = 3000, progressBar = true) {
+  static toast(title = 'Warning!', display = 'warning', position = 'top-end', timer = 1500, progressBar = false) {
     Swal.fire({
       title: title,
       icon: display,
       position: position,
+      background: '#f9f7f3',
       timer: timer,
       timerProgressBar: progressBar,
       toast: true,
-      showConfirmButton: false
+      showConfirmButton: false,
+      showClass: {
+        popup: 'animated fadeInDown faster',
+        icon: 'animated heartBeat delay-1s'
+      },
+      hideClass: {
+        popup: 'animated fadeOutUp faster'
+      }
     })
   }
+
+  static async username(username = AppState.account.name) {
+    const { value: name } = await Swal.fire({
+      icon: 'info',
+      title: 'Customize your Username',
+      input: 'text',
+      background: '#f9f7f3',
+      inputPlaceholder: username
+    })
+    if (name) {
+      AppState.account.name = name
+    }
+  }
+
+  static async character(username = AppState.activeCharacter.name) {
+    const { value: name } = await Swal.fire({
+      icon: 'question',
+      title: "What is your character's name?",
+      input: 'text',
+      background: '#f9f7f3',
+      inputValue: username
+    })
+    if (name) {
+      AppState.activeCharacter.name = name
+      const { value: imgUrl } = await Swal.fire({
+        icon: 'question',
+        title: 'What does your character look like?',
+        input: 'text',
+        background: '#f9f7f3',
+        inputPlaceholder: 'Paste the URL of your preferred image'
+      })
+      if (imgUrl) {
+        AppState.activeCharacter.imgUrl = imgUrl
+      }
+    }
+  }
+
+  static async values(type = String) {
+    const { value } = await Swal.fire({
+      icon: 'info',
+      title: `Add a new available ${type}`,
+      input: 'text',
+      background: '#f9f7f3',
+      inputPlaceholder: `New ${type}`
+    })
+    if (value) {
+      AppState.values[type.toLowerCase()].push(value)
+    }
+  }
+
+  // static async multiModal(name = AppState.activeCharacter.name) {
+  //   // eslint-disable-next-line vue/one-component-per-file
+  //   await Swal.mixin({
+  //     title: `Edit ${name}'s information`,
+  //     input: 'text',
+  //     confirmButtonText: 'Next &rarr;',
+  //     confirmButtonColor: '#4f6031',
+  //     progressSteps: [1, 2]
+  //   }).queue([
+  //     {
+  //       title: "What is your character's name?",
+  //       icon: 'question',
+  //       inputPlaceholder: name
+  //     },
+  //     {
+  //       title: 'What does your character look like?',
+  //       icon: 'info',
+  //       inputPlaceholder: "We've provided you a placeholder by default"
+  //     }
+  //   ]).then((result) => {
+  //     if (result.value) {
+  //       if (result.value[0] === '') {
+  //         AppState.activeCharacter.name = 'The Nameless One'
+  //       } else {
+  //         AppState.activeCharacter.name = result.value[0]
+  //       }
+  //       if (result.value[1] === '') {
+  //         AppState.activeCharacter.imgUrl = 'http://www.geocities.ws/Area51/Orion/3107/Lance21.jpg'
+  //       } else {
+  //         AppState.activeCharacter.imgUrl = result.value[1]
+  //       }
+  //     }
+  //   })
+  // }
 }
