@@ -10,7 +10,27 @@
       </div>
     </div>
     <div class="row justify-content-around" v-else>
-      <div class="col-12 p-md-3 px-2 pt-2" v-if="state.activeCharacter.live">
+      <div class="col-xl-8 col-lg-9 col-md-10 col-11 p-md-3 px-2 pt-2" v-if="!state.characters[0]">
+        <h2 class="font-xxl">
+          <u>You don't have any characters to play with!</u>
+        </h2>
+        <h3 class="font-xl mb-3">
+          You'll have to register one before you can sign up...
+        </h3>
+        <CreateCharacter />
+      </div>
+      <div class="col-12 p-md-3 px-2 pt-2" v-else-if="!state.activeCharacter.id">
+        <h2 class="font-xxl m-0">
+          <u>Which character do you want to play this week?</u>
+        </h2>
+        <h3 class="font-xl m-0">
+          You can change this once games are finalized
+        </h3>
+        <div class="row justify-content-around">
+          <CharacterList v-for="c in state.characters" :key="c.id" :char-prop="c" />
+        </div>
+      </div>
+      <div class="col-12 p-md-3 px-2 pt-2" v-else-if="state.activeCharacter.live">
         <h2 class="font-xxl">
           <u>{{ state.activeCharacter.name }} the {{ state.activeCharacter.race }} {{ state.activeCharacter.class }} has been selected!</u>
         </h2>
@@ -30,26 +50,6 @@
         </h3>
         <div class="row justify-content-around mt-1">
           <GameList v-for="(g, index) in state.activeCharacter.liveGames" :key="g.id" :game-prop="g" :index-prop="index + 1" :live-prop="!state.loading" />
-        </div>
-      </div>
-      <div class="col-xl-8 col-lg-9 col-md-10 col-11 p-md-3 px-2 pt-2" v-else-if="!state.characters[0]">
-        <h2 class="font-xxl">
-          <u>You don't have any characters to play with!</u>
-        </h2>
-        <h3 class="font-xl mb-3">
-          You'll have to register one before you can sign up...
-        </h3>
-        <CreateCharacter />
-      </div>
-      <div class="col-12 p-md-3 px-2 pt-2" v-else-if="!state.activeCharacter.id">
-        <h2 class="font-xxl m-0">
-          <u>Which character do you want to play this week?</u>
-        </h2>
-        <h3 class="font-xl m-0">
-          You can change this once games are finalized
-        </h3>
-        <div class="row justify-content-around">
-          <CharacterList v-for="c in state.characters" :key="c.id" :char-prop="c" />
         </div>
       </div>
       <div class="col-12 p-md-3 px-2 pt-2" v-else-if="state.game < 2">
