@@ -67,7 +67,7 @@ export default class Notification {
       title: 'Customize your Username',
       input: 'text',
       background: '#f9f7f3',
-      inputPlaceholder: username
+      inputValue: username
     })
     if (name) {
       AppState.account.name = name
