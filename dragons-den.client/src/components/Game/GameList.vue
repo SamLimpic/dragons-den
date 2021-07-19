@@ -49,6 +49,7 @@
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
+                  v-if="liveProp"
           >
             {{ gameProp.size }} Players
           </button>

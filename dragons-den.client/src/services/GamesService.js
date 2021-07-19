@@ -184,8 +184,8 @@ class GamesService {
   }
 
   async randomizeGames() {
-    await charactersService.getCharacters()
     await this.getGames()
+    await charactersService.getCharacters()
     const characters = AppState.characters
     const games = AppState.games
 
@@ -196,22 +196,23 @@ class GamesService {
     for (let i = 0; i < characters.length; i++) {
       characters[i].liveGames = []
       characters[i].games = []
-      let num = Math.floor(Math.random() * games.length + 3)
-      if (num > games.length) {
-        num = games.length
-      }
-      let currentIndex = games.length; let randomIndex
-      while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex)
-        currentIndex--;
-        [games[currentIndex], games[randomIndex]] = [
-          games[randomIndex], games[currentIndex]]
-      }
-      for (let k = 0; k < num; k++) {
-        games[k].choice = k
-        games[k].players = []
-        characters[i].liveGames.push(games[k])
-      }
+      characters[i].live = false
+      // let num = Math.floor(Math.random() * games.length + 3)
+      // if (num > games.length) {
+      //   num = games.length
+      // }
+      // let currentIndex = games.length; let randomIndex
+      // while (currentIndex !== 0) {
+      //   randomIndex = Math.floor(Math.random() * currentIndex)
+      //   currentIndex--;
+      //   [games[currentIndex], games[randomIndex]] = [
+      //     games[randomIndex], games[currentIndex]]
+      // }
+      // for (let k = 0; k < num; k++) {
+      //   games[k].choice = k
+      //   games[k].players = []
+      //   characters[i].liveGames.push(games[k])
+      // }
       AppState.activeCharacter = characters[i]
       await charactersService.updateCharacter(characters[i])
     }

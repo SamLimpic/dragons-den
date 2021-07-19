@@ -25,7 +25,6 @@
                          :drop-prop="r"
                          type-prop="Race"
                          :live-prop="state.account.admin"
-                         :left-prop="state.account.admin"
           />
         </div>
       </div>

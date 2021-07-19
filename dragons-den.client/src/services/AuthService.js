@@ -7,7 +7,6 @@ import { api } from './AxiosService'
 import { charactersService } from './CharactersService'
 import { socketService } from './SocketService'
 // import { gamesService } from './GamesService'
-// import { valuesService } from './ValuesService'
 
 export const AuthService = initialize({
   domain,
